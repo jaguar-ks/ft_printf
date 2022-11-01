@@ -6,11 +6,44 @@
 /*   By: faksouss <faksouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:26:18 by faksouss          #+#    #+#             */
-/*   Updated: 2022/11/01 02:18:37 by faksouss         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:09:20 by faksouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
+
+int	ft_putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
+int	tol(long int nb, int base)
+{
+	int	i;
+
+	i = 0;
+	if (nb <= 0)
+	{
+		nb *= -1;
+		i = 1;
+	}
+	while (nb > 0)
+	{
+		nb /= base;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	prnt_frm(va_list arg, char frm)
 {
@@ -26,7 +59,7 @@ int	prnt_frm(va_list arg, char frm)
 	if (frm == 'u')
 		j = ft_putun(va_arg(arg, unsigned int));
 	if (frm == 'x' || frm == 'X')
-		j = ft_prnt_hex(va_arg(arg, unsigned int), frm);
+		j = ft_put_hex(va_arg(arg, unsigned int), frm);
 	if (frm == 'p')
 		j = ft_put_add(va_arg(arg, void *));
 	if (frm == '%')

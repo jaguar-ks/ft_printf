@@ -6,7 +6,7 @@
 /*   By: faksouss <faksouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 02:14:46 by faksouss          #+#    #+#             */
-/*   Updated: 2022/11/01 02:19:04 by faksouss         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:08:38 by faksouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_put_add(void *p)
 {
-	unsigned long	r;
+	unsigned int	r;
 	int				j;
 
 	j = 2;
@@ -25,18 +25,7 @@ int	ft_put_add(void *p)
 		return (j);
 	}
 	r = (unsigned long)p;
-	j += ft_prnt_hex(r, 'x');
-	return (j);
-}
-
-int	ft_prnt_hex(unsigned long n, char frm)
-{
-	int				j;
-	unsigned long	nb;
-
-	nb = n;
-	j = tol(n, 16);
-	ft_puthex(nb, frm);
+	j += ft_put_hex(r, 'x');
 	return (j);
 }
 
@@ -64,7 +53,7 @@ int	ft_putstr(char *s)
 		return (write(1, "(null)", 6));
 }
 
-void	ft_puthex(unsigned long n, char frm)
+int	ft_put_hex(unsigned long n, char frm)
 {
 	unsigned long	nb;
 	char			*hex;
@@ -78,7 +67,30 @@ void	ft_puthex(unsigned long n, char frm)
 		ft_putchar(hex[nb]);
 	if (nb > 15)
 	{
-		ft_puthex(nb / 16, frm);
-		ft_puthex(nb % 16, frm);
+		ft_put_hex(nb / 16, frm);
+		ft_put_hex(nb % 16, frm);
 	}
+	nb = n;
+	return (tol(nb, 16));
+}
+
+int	ft_putnbr(int n)
+{
+	long int	nb;
+
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb *= -1;
+	}
+	if (nb >= 0 && nb <= 9)
+		ft_putchar(nb + 48);
+	if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	nb = n;
+	return (tol(nb, 10));
 }
