@@ -6,7 +6,7 @@
 /*   By: faksouss <faksouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:26:18 by faksouss          #+#    #+#             */
-/*   Updated: 2022/11/02 09:53:12 by faksouss         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:19:12 by faksouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,10 @@ int	ft_printf(const char *s, ...)
 	{
 		while (s[i] && s[i] != '%' && i < ft_strlen((char *) s))
 		{
-			write(1, &s[i], 1);
+			j += write(1, &s[i], 1);
+			if (j == -1)
+				return (-1);
 			i++;
-			j++;
 		}
 		if (s[i] == '%' && i < ft_strlen((char *) s))
 		{
