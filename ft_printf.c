@@ -6,7 +6,7 @@
 /*   By: faksouss <faksouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:26:18 by faksouss          #+#    #+#             */
-/*   Updated: 2022/11/01 11:09:20 by faksouss         ###   ########.fr       */
+/*   Updated: 2022/11/02 09:53:12 by faksouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	prnt_frm(va_list arg, char frm)
 		j = ft_put_hex(va_arg(arg, unsigned int), frm);
 	if (frm == 'p')
 		j = ft_put_add(va_arg(arg, void *));
-	if (frm == '%')
-		j = ft_putchar('%');
+	else
+		j = ft_putchar(frm);
 	return (j);
 }
 
@@ -73,9 +73,9 @@ int	ft_printf(const char *s, ...)
 	int		i;
 	int		j;
 
-	va_start(arg, s);
 	i = 0;
 	j = 0;
+	va_start(arg, s);
 	while (s[i] && i < ft_strlen((char *) s))
 	{
 		while (s[i] && s[i] != '%' && i < ft_strlen((char *) s))

@@ -6,7 +6,7 @@
 /*   By: faksouss <faksouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 02:14:46 by faksouss          #+#    #+#             */
-/*   Updated: 2022/11/01 11:08:38 by faksouss         ###   ########.fr       */
+/*   Updated: 2022/11/02 09:52:24 by faksouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	ft_put_add(void *p)
 {
-	unsigned int	r;
+	unsigned long	r;
 	int				j;
 
-	j = 2;
-	write(1, "0x", 2);
+	j = write(1, "0x", 2);
 	if (!p)
 	{
 		j += write(1, "0", 1);
