@@ -6,7 +6,7 @@
 /*   By: faksouss <faksouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:26:18 by faksouss          #+#    #+#             */
-/*   Updated: 2022/11/03 08:44:49 by faksouss         ###   ########.fr       */
+/*   Updated: 2022/11/03 12:26:34 by faksouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,22 @@ int	ft_strlen(char *s)
 
 int	prnt_frm(va_list arg, char frm)
 {
-	int	j;
-
-	j = 0;
 	if (frm == 'c')
-		j = ft_putchar(va_arg(arg, int));
-	if (frm == 's')
-		j = ft_putstr(va_arg(arg, char *));
-	if (frm == 'd' || frm == 'i')
-		j = ft_putnbr(va_arg(arg, int));
-	if (frm == 'u')
-		j = ft_putun(va_arg(arg, unsigned int));
-	if (frm == 'x' || frm == 'X')
-		j = ft_put_hex(va_arg(arg, unsigned int), frm);
-	if (frm == 'p')
-		j = ft_put_add(va_arg(arg, void *));
-	if (frm == '%')
-		j = ft_putchar('%');
-	return (j);
+		return (ft_putchar(va_arg(arg, int)));
+	else if (frm == 's')
+		return (ft_putstr(va_arg(arg, char *)));
+	else if (frm == 'd' || frm == 'i')
+		return (ft_putnbr(va_arg(arg, int)));
+	else if (frm == 'u')
+		return (ft_putun(va_arg(arg, unsigned int)));
+	else if (frm == 'x' || frm == 'X')
+		return (ft_put_hex(va_arg(arg, unsigned int), frm));
+	else if (frm == 'p')
+		return (ft_put_add(va_arg(arg, void *)));
+	else if (frm == '%')
+		return (ft_putchar('%'));
+	else
+		return (ft_putchar(frm));
 }
 
 int	ft_printf(const char *s, ...)
